@@ -145,6 +145,7 @@ class LDAPContext implements Context {
 	public function theGroupResultShouldMatch(string $type, TableNode $expectations) {
 		$listReturnedElements = simplexml_load_string($this->response->getBody())->data[0]->$type[0]->element;
 		$extractedIDsArray = json_decode(json_encode($listReturnedElements), 1);
+		var_dump($extractedIDsArray);
 		foreach($expectations->getRows() as $expectation) {
 			if((int)$expectation[1] === 1) {
 				PHPUnit_Framework_Assert::assertContains($expectation[0], $extractedIDsArray);

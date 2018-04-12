@@ -147,6 +147,9 @@ class File {
 			error_log($entry);
 		}
 		if (php_sapi_name() === 'cli-server') {
+			if(is_array($message)) {
+				\OC::$server->getLogger()->logException(new \Exception('where does the array come from?'));
+			}
 			error_log($message, 4);
 		}
 	}
